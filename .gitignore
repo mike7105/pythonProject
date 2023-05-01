@@ -1,0 +1,14 @@
+venv
+*idea*
+*build*
+*__pycache__*
+*.zip
+*old*
+*imgs*
+*.bak
+*.dat
+*.dir
+*.bkp
+*.spec
+*.pem
+*.pyc
