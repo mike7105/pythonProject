@@ -16,14 +16,14 @@ def print_hi(name: str):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    pFile = "base.xlsx"
-    print("read_excel:")
-    print(excelToPandas.read_excel(pFile).shape)
-    print(timeit.timeit(setup="import excelToPandas; pFile = 'base.xlsx'", stmt="excelToPandas.read_excel(pFile)",
-                        number=1))
+    # pFile = "base.xlsx"
+    # print("read_excel:")
+    # # print(excelToPandas.read_excel(pFile).shape)
+    # print(timeit.timeit(setup="import excelToPandas; pFile = 'base.xlsx'", stmt="excelToPandas.read_excel(pFile)",
+    #                     number=1))
     print()
     print("read_excle_csv:")
-    print(excelToPandas.read_excle_csv(pFile).shape)
+    # print(excelToPandas.read_excle_csv(pFile).shape)
     print(timeit.timeit(setup="import excelToPandas; pFile = 'base.xlsx'", stmt="excelToPandas.read_excle_csv(pFile)",
                         number=1))
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -1,6 +1,7 @@
 """Test to load Excel to Pandas"""
 import pandas as pd
 from subprocess import call
+import os
 import writeVBscript
 
 def read_excel(file: str) -> pd.DataFrame:
@@ -20,4 +21,11 @@ def read_excle_csv(file: str) -> pd.DataFrame:
     writeVBscript.write_ExcelToCsv()
     csvfile = file.replace(".xlsx", ".csv")
     call(['cscript.exe', 'ExcelToCsv.vbs', file, csvfile, "1"])
-    return pd.read_csv(csvfile)
+
+    res: pd.DataFrame = pd.read_csv(csvfile)
+
+    for f in ['ExcelToCsv.vbs', csvfile]:
+        if os.path.isfile(f):
+            os.remove(f)
+
+    return res
