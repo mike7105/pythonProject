@@ -51,7 +51,7 @@ def async_create(count):
 
     async def main():
         nonlocal end
-        tasks = [work_async() for x in range(count)]
+        tasks = [work_async() for _ in range(count)]
 
         end = time.time()
         return await asyncio.gather(*tasks)
