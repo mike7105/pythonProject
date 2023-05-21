@@ -20,7 +20,7 @@ def read_excle_csv(file: str) -> pd.DataFrame:
     """
     writeVBscript.write_ExcelToCsv()
     csvfile = file.replace(".xlsx", ".csv")
-    call(['cscript.exe', 'ExcelToCsv.vbs', file, csvfile, "1"])
+    call(['cscript.exe', 'ExcelToCsv.vbs', file, csvfile, "Лист1"])
 
     res: pd.DataFrame = pd.read_csv(csvfile)
 

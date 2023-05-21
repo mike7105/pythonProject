@@ -11,7 +11,11 @@ Set objFSO = CreateObject("Scripting.FileSystemObject")
 
 src_file = objFSO.GetAbsolutePathName(Wscript.Arguments.Item(0))
 dest_file = objFSO.GetAbsolutePathName(WScript.Arguments.Item(1))
-worksheet_number = CInt(WScript.Arguments.Item(2))
+if IsNumeric(WScript.Arguments.Item(2)) then
+    worksheet_number = CInt(WScript.Arguments.Item(2)) + 1
+else
+    worksheet_number = WScript.Arguments.Item(2)
+end if
 
 Dim oExcel
 Set oExcel = CreateObject("Excel.Application")
