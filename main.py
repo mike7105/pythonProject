@@ -23,7 +23,7 @@ if __name__ == '__main__':
     #                     number=1))
     print()
     print("read_excle_csv:")
-    print(excelToPandas.read_excle_csv(pFile).shape)
-    # print(timeit.timeit(setup="import excelToPandas; pFile = 'base.xlsx'", stmt="excelToPandas.read_excle_csv(pFile)",
-    #                     number=1))
+    # print(excelToPandas.read_excle_csv(pFile).shape)
+    print(timeit.timeit(setup="import excelToPandas; pFile = 'base.xlsx'", stmt="excelToPandas.read_excle_csv(pFile)",
+                        number=10))
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
