@@ -108,4 +108,4 @@ def convertXLSXtoCSVpy(file: str):
     :param file:
     """
     csvfile = file.replace(".xlsx", ".csv")
-    Xlsx2csv(file, outputencoding="utf-8", sheetname="Лист1").convert(csvfile)
+    Xlsx2csv(file, outputencoding="utf-8").convert(csvfile, sheetname="data")
