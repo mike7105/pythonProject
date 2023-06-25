@@ -19,7 +19,9 @@ def logger_process(qu: Queue):
     # create a logger
     loggerP = logging.getLogger('app')
     # configure a stream handler
-    loggerP.addHandler(logging.StreamHandler())
+    sHandler = logging.StreamHandler()
+    sHandler.setFormatter(logging.Formatter("%(asctime)s - %(processName)s - %(levelname)s - %(message)s"))
+    loggerP.addHandler(sHandler)
     # log all messages, debug and up
     loggerP.setLevel(logging.DEBUG)
     # report that the logger process is running
@@ -71,6 +73,7 @@ if __name__ == '__main__':
         logger.addHandler(QueueHandler(queue))
         # log all messages, debug and up
         logger.setLevel(logging.DEBUG)
+
         params: list[tuple] = [(queue, ) for i in range(5)]
         # create the process pool with default configuration
         with Pool() as pool:
