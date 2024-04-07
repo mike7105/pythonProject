@@ -13,9 +13,11 @@ def download_video(entry_field: str, d_loc: str) -> None:
     :param str entry_field:  ссылк ана видео
     :param str d_loc: папка сохранения
     """
-    if not os.path.exists(d_loc):
-        os.mkdir(d_loc)
+
     try:
+        if not os.path.exists(d_loc):
+            os.mkdir(d_loc)
+
         start_time = time()
         YouTube(entry_field).streams.get_highest_resolution().download(d_loc)
         end_time = time()
@@ -23,8 +25,8 @@ def download_video(entry_field: str, d_loc: str) -> None:
         # Отображение времени загрузки в новом окне
         popup = CTk()
         popup.title("Download Status")
+        popup.geometry(getGeometryCenter(popup, 200, 100))
         popup.resizable(False, False)
-        popup.geometry("200x100")
         popup.grid_columnconfigure(0, weight=1)
         # noinspection PyTypeChecker
         popup.grid_rowconfigure((0, 1), weight=1)
@@ -42,22 +44,47 @@ def download_video(entry_field: str, d_loc: str) -> None:
 
     except exceptions.RegexMatchError:
         # Если есть недействительная или пустая ссылка, отображается сообщение об ошибке.
-        error = CTk()
-        error.title("Error")
-        error.resizable(False, False)
-        error.geometry("300x100")
-        # noinspection PyTypeChecker
-        error.grid_rowconfigure((0, 1), weight=1)
-        error.grid_columnconfigure(0, weight=1)
+        errorPopup("Please enter a valid YouTube link")
+    except FileNotFoundError:
+        errorPopup("Check folder to save")
 
-        error_label = CTkLabel(error, text="Please enter a valid YouTube link")
-        error_label.grid(row=0, column=0)
 
-        button = CTkButton(error, text="OK", command=error.destroy)
-        button.grid(row=1, column=0)
+def getGeometryCenter(currCTk: CTk, width: int, height: int) -> str:
+    """
+    строка с геометрией, где окно размещается по центру
+    :param CTk currCTk: окно
+    :param int width: ширина окна
+    :param int height: высота окна
+    :return str: стркоа геометрии
+    """
+    screen_width = currCTk.winfo_screenwidth()  # Width of the screen
+    screen_height = currCTk.winfo_screenheight()  # Height of the screen
+    x = (screen_width / 2) - (width / 2)
+    y = (screen_height / 2) - (height / 2)
 
-        error.mainloop()
+    return f'{width}x{height}+{x:.0f}+{y:.0f}'
 
+
+def errorPopup(msg: str) -> None:
+    """
+    Отображает сообщенеи об ошибке
+    :param str msg: текст сообщения об ошибке
+    """
+    error = CTk()
+    error.title("Error")
+    error.geometry(getGeometryCenter(error, 300, 100))
+    error.resizable(False, False)
+    # noinspection PyTypeChecker
+    error.grid_rowconfigure((0, 1), weight=1)
+    error.grid_columnconfigure(0, weight=1)
+
+    error_label = CTkLabel(error, text=msg)
+    error_label.grid(row=0, column=0)
+
+    button = CTkButton(error, text="OK", command=error.destroy)
+    button.grid(row=1, column=0)
+
+    error.mainloop()
 
 def initMain() -> None:
     """
@@ -70,7 +97,8 @@ def initMain() -> None:
     master.grid_rowconfigure((0, 1, 2), weight=1)
     # noinspection PyTypeChecker
     master.grid_columnconfigure(1, weight=1)
-    master.geometry("800x150")
+
+    master.geometry(getGeometryCenter(master, 800, 150))
     master.resizable(True, False)
 
     CTkLabel(master, text="Enter YouTube video URL:").grid(row=0, column=0, sticky="W", padx=5)
@@ -93,6 +121,7 @@ def initMain() -> None:
 
 
 if __name__ == '__main__':
-    set_appearance_mode("System")
+    # set_appearance_mode("System")
+    set_appearance_mode("dark")
     set_default_color_theme("blue")
     initMain()
