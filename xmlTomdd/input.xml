@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Survey xmlns="http://www.spss.com/ss/xml/study_mdd">
+  <Variables>
+    <!-- Числовая переменная для возраста -->
+    <Variable name="Q_AGE" type="numeric" label="Сколько вам полных лет?">
+      <Description>Возраст респондента</Description>
+      <Position page="1" pos="1"/> <!-- Позиция на странице -->
+      <Range min="18" max="100"/> <!-- Ограничение ввода -->
+      <Validation>
+        <ErrorMessage>Возраст должен быть от 18 до 100 лет.</ErrorMessage>
+        <Script>
+          <![CDATA[
+            if (Q_AGE < 18 || Q_AGE > 100) {
+              RaiseError();
+            }
+          ]]>
+        </Script>
+      </Validation>
+    </Variable>
+  </Variables>
+
+  <!-- Логика перехода при возрасте < 18 -->
+  <Routing>
+    <Rule>
+      <Condition><![CDATA[Q_AGE < 18]]></Condition>
+      <Action>Terminate("Респондент младше 18 лет.")</Action>
+    </Rule>
+  </Routing>
+
+  <!-- Категории для группировки (опционально) -->
+  <Categories>
+    <CategoryGroup name="AGE_GROUPS">
+      <Category name="18-24" value="1" label="18–24 года"/>
+      <Category name="25-34" value="2" label="25–34 года"/>
+      <Category name="35-44" value="3" label="35–44 года"/>
+      <Category name="45+" value="4" label="45 лет и старше"/>
+    </CategoryGroup>
+  </Categories>
+</Survey>

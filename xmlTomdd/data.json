@@ -1,0 +1,112 @@
+[
+  {
+    "id": "test_base",
+    "instruction": "",
+    "instructionOfType": "<i>ОДИН ОТВЕТ</i>",
+    "isRequired": true,
+    "otherAttributes": {},
+    "otherTags": {
+      "filter": "<Filter>return $istest;</Filter>",
+      "redirect": "<Redirect><![CDATA[\r\n\t\t\tif(AnswerExists(\"test_base\",\"1\")) AnswerUpdate(\"T04\",\"1\");\r\n\t\t\tif(AnswerExists(\"test_base\",\"2\")) AnswerUpdate(\"T04\",\"2\");\r\n\t\t\treturn false;\r\n\t\t]]></Redirect>"
+    },
+    "shortText": "",
+    "text": "Выберите гороод",
+    "type": "s",
+    "randomizeAnswers": false,
+    "answers": [
+      {
+        "code": 1,
+        "isExclusive": false,
+        "isFixed": false,
+        "isOther": false,
+        "properties": {},
+        "text": "<p>Ответ 1</p>"
+      },
+      {
+        "code": 2,
+        "isExclusive": false,
+        "isFixed": false,
+        "isOther": false,
+        "properties": {},
+        "text": "<p>Ответ 2</p>"
+      }
+    ]
+  },
+  {
+    "id": "I2",
+    "instruction": "",
+    "instructionOfType": "<i>ОДИН ОТВЕТ</i>",
+    "isRequired": true,
+    "otherAttributes": {},
+    "otherTags": {
+      "redirect": "<Redirect Status=\"19\" Page=\"screen\">return AnswerExists(\"I2\",\"2\");</Redirect>"
+    },
+    "shortText": "",
+    "text": "\n\t\t\t\tСоглашение об участии в исследовании[br][br]\n\t\t\t\t[b]Я принимаю[/b] [ins]настоящее[/ins] [u]соглашение[/u] (оферту) об участии в социологическом исследовании, организованном ООО «Ипсос Комкон» (ИНН 7725714277, адрес: г. Москва, улица Красносельская Верхняя, дом 3, строение 2) по теме «Дислипидемия», а также даю свое согласие ООО «ИПСОС КОМКОН» (г. Москва, ул. Верхняя Красносельская, 3 строение 2) (далее по тексту Компания) на обработку персональных данных, указанных в анкете, в целях осуществления маркетингового исследования и проведения контроля работы интервьюеров.[br][br]\n\t\t\t\t[center]Под обработкой персональных данных[/center] понимается любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств, включая сбор, запись, систематизацию, накопление, хранение, уточнение, (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление, уничтожение персональных данных, в частности с использованием таких способов: запись на электронные носители, составление перечней, других способов, в соответствии с действующим законодательством.[br][br]\n\t\t\t\tЯ уведомлён, что Компания является оператором в соответствии с Федеральным Законом Российской Федерации № 152-ФЗ «О персональных данных» от 27 июля 2006 года. При обработке персональных данных Компания обязуется соблюдать положения внутренней документации о персональных данных, а также требования применимого законодательства в отношении защиты персональных данных, и, в частности, обеспечить конфиденциальность и защиту персональных данных от несанкционированного доступа и других неправомерных действий. Данное согласие будет действительно в течение неограниченного периода времени и может быть отозвано Вами путём направления отзыва данного согласия на адрес Компании.\n\t\t\t",
+    "type": "s",
+    "randomizeAnswers": false,
+    "answers": []
+  },
+  {
+    "id": "A02",
+    "instruction": "",
+    "instructionOfType": "<i>ВОЗМОЖНО НЕСКОЛЬКО ОТВЕТОВ</i>",
+    "isRequired": true,
+    "otherAttributes": {
+      "Mix": "true"
+    },
+    "otherTags": {},
+    "shortText": "",
+    "text": "Какие из приведенных классов Вы знаете (неважно назначали ли Вы их или нет)? ",
+    "type": "m",
+    "randomizeAnswers": false,
+    "answers": [],
+    "minAnswers": 1,
+    "maxAnswers": -1
+  },
+  {
+    "id": "B1",
+    "instruction": "",
+    "instructionOfType": "<i>ВОЗМОЖНО НЕСКОЛЬКО ОТВЕТОВ</i>",
+    "isRequired": true,
+    "otherAttributes": {
+      "MixId": "mixb1"
+    },
+    "otherTags": {},
+    "shortText": "",
+    "text": "С какими фармкомпаниями Вы взаимодействовали за последние 3 месяца в области практики [ins]терапии гиперхолестеринемии[/ins]?",
+    "type": "m",
+    "randomizeAnswers": false,
+    "answers": [],
+    "minAnswers": 1,
+    "maxAnswers": -1
+  },
+  {
+    "id": "S03",
+    "instruction": "",
+    "instructionOfType": "<i>ВВЕДИТЕ ЧИСЛО</i>",
+    "isRequired": true,
+    "otherAttributes": {
+      "TextWidth": "30"
+    },
+    "otherTags": {
+      "redirect": "<Redirect Status=\"19\" Page=\"screen\"><![CDATA[\r\n\t\t\tint stage = GetInt(AnswerValue(\"S03\",\"1\"));\r\n\t\t\tif(stage < 3 || stage > 40) return true;\r\n\t\t\treturn false;\r\n\t\t]]></Redirect>"
+    },
+    "shortText": "",
+    "text": "Пожалуйста, укажите Ваш стаж работы по данной специальности.",
+    "type": "n"
+  },
+  {
+    "id": "A43",
+    "instruction": "",
+    "instructionOfType": "<i>ВВЕДИТЕ ТЕКСТ</i>",
+    "isRequired": true,
+    "otherAttributes": {},
+    "otherTags": {},
+    "shortText": "",
+    "text": "Какие критерии Вы применяете для изменения липидснижающей терапии, рекомендованной в стационаре? ",
+    "type": "t",
+    "maxLength": 0,
+    "minLength": 500
+  }
+]
